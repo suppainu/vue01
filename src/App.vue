@@ -1,10 +1,20 @@
 <template>
   <div>
-    <h3>{{ title }}</h3>
-  <ul>
-    <li><a v-bind:href="url1">Vue</a></li>
-    <li><a :href="url2">Vuetify</a></li>
-  </ul>
+    <button v-on:click='onClick()'>click</button>
+    {{ clickResult }}
+
+    <br>
+      <input v-on:change='onChange($event)' placeholder='change'>
+    {{ changeResult }}
+
+    <br>
+      <input @input='onInput($event)' placeholder='input'>
+    {{ inputResult }}
+
+    <br>
+
+    <input @keyup='onKeyup($event)' placeholder="keyup">
+    {{ keyupResult }}
   </div>
 </template>
 
@@ -12,9 +22,24 @@
 export default {
   data(){
     return{
-      title:'Vue sites',
-      url1:'https://vuejs.org/',
-      url2:'https://vuetifyjs.com/'
+      clickResult: '',
+      changeResult: '',
+      inputResult: '',
+      keyupResult: ''
+    }
+  },
+  methods: {
+    onClick(){
+      this.clickResult = 'clicked';
+    },
+    onChange(e){
+      this.changeResult = e.target.value;;
+    },
+    onInput(e){
+      this.inputResult = e.target.value;;
+    },
+    onKeyup(e){
+      this.keyupResult = e.target.value;
     }
   }
 }
